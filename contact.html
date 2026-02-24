@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contact — Biinaa-Glam</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo-section">
+        <div class="brand-name">Biinaa-Glam</div>
+      </div>
+      <nav class="header-nav">
+        <a href="index.html" class="nav-link">Accueil</a>
+        <a href="about.html" class="nav-link">À propos</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="checkout.html" class="nav-link">Caisse</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section">
+      <h1>Contactez-nous</h1>
+      <p class="small">Vous pouvez nous envoyer un message ici. Nous vous répondrons dans les plus brefs délais.</p>
+
+      <form id="contact-form" class="contact-form" novalidate>
+        <div class="form-row">
+          <label for="name">Nom complet</label>
+          <input id="name" name="name" type="text" required placeholder="Votre nom">
+          <div class="error" data-for="name"></div>
+        </div>
+
+        <div class="form-row">
+          <label for="email">Adresse e‑mail</label>
+          <input id="email" name="email" type="email" required placeholder="vous@exemple.com">
+          <div class="error" data-for="email"></div>
+        </div>
+
+        <div class="form-row">
+          <label for="phone">Téléphone (optionnel)</label>
+          <input id="phone" name="phone" type="tel" placeholder="+221 77 ...">
+          <div class="error" data-for="phone"></div>
+        </div>
+
+        <div class="form-row">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" required placeholder="Votre message..."></textarea>
+          <div class="error" data-for="message"></div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn primary">Envoyer</button>
+          <button type="reset" class="btn">Réinitialiser</button>
+        </div>
+
+        <div id="form-success" class="form-success" role="status" aria-live="polite" hidden>Message envoyé — merci !</div>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    (function(){
+      const form = document.getElementById('contact-form');
+      const successEl = document.getElementById('form-success');
+
+      function showError(name, msg){
+        const el = document.querySelector(`.error[data-for="${name}"]`);
+        if(el) el.textContent = msg || '';
+      }
+
+      function clearErrors(){
+        document.querySelectorAll('.error').forEach(e=>e.textContent='');
+      }
+
+      function validate(){
+        clearErrors();
+        let ok = true;
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        const phone = form.phone.value.trim();
+        const message = form.message.value.trim();
+
+        if(name.length < 2){ showError('name','Veuillez entrer votre nom.'); ok = false; }
+
+        const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if(!emailRe.test(email)){ showError('email','Adresse e‑mail invalide.'); ok = false; }
+
+        if(phone && !/^\+?[0-9\s\-().]{6,20}$/.test(phone)){ showError('phone','Numéro de téléphone invalide.'); ok = false; }
+
+        if(message.length < 10){ showError('message','Le message doit contenir au moins 10 caractères.'); ok = false; }
+
+        return ok;
+      }
+
+      // Configurez ici l'URL du Web App Apps Script déployé (voir README)
+      // Si vous utilisez le backend Node.js local, utilisez: http://localhost:3000/contact
+      const WEBHOOK_URL = 'http://localhost:3000/contact'; // ex: 'https://script.google.com/macros/s/REPLACE/exec'
+
+      form.addEventListener('submit', async (e)=>{
+        e.preventDefault();
+        successEl.hidden = true;
+        if(!validate()) return;
+
+        const payload = {
+          name: form.name.value.trim(),
+          email: form.email.value.trim(),
+          phone: form.phone.value.trim(),
+          message: form.message.value.trim(),
+          timestamp: new Date().toISOString()
+        };
+
+        if(WEBHOOK_URL && WEBHOOK_URL.length>0){
+          try{
+            const res = await fetch(WEBHOOK_URL, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+            if(res.ok){
+              successEl.textContent = 'Message envoyé — merci !';
+              successEl.hidden = false;
+              form.reset();
+            } else {
+              showError('message','Envoi échoué (réponse serveur).');
+              console.error('Webhook non-ok', await res.text());
+            }
+          }catch(err){
+            showError('message','Erreur réseau lors de l\'envoi.');
+            console.error(err);
+          }
+        } else {
+          // Fallback : ouvrir le client mail si le webhook n'est pas configuré
+          const subject = encodeURIComponent('Contact Biinaa-Glam — ' + form.name.value.trim());
+          const body = encodeURIComponent(`Nom: ${form.name.value}\nEmail: ${form.email.value}\nTel: ${form.phone.value}\n\nMessage:\n${form.message.value}`);
+          window.location.href = `mailto:contact@biinaa-glam.example?subject=${subject}&body=${body}`;
+          successEl.textContent = 'Message préparé dans votre client mail.';
+          successEl.hidden = false;
+          form.reset();
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>

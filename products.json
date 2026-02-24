@@ -1,0 +1,93 @@
+[
+  {
+    "id": 4,
+    "name": "Set Pinceaux Professionnels",
+    "price": 22000,
+    "image": "https://images.unsplash.com/photo-1596704017254-9b121068ec31?w=400&h=300&fit=crop",
+    "category": "Accessoires"
+  },
+  {
+    "id": 7,
+    "name": "Escarpins Élégance Dorée",
+    "price": 65000,
+    "image": "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400&h=300&fit=crop",
+    "category": "Chaussures"
+  },
+  {
+    "id": 8,
+    "name": "Sandales à Talons Luxe",
+    "price": 58000,
+    "image": "https://images.unsplash.com/photo-1535043934128-cf0b28d52f95?w=400&h=300&fit=crop",
+    "category": "Chaussures"
+  },
+  {
+    "id": 9,
+    "name": "Bottines Cuir Premium",
+    "price": 72000,
+    "image": "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=400&h=300&fit=crop",
+    "category": "Chaussures"
+  },
+  {
+    "id": 10,
+    "name": "Sac à Main Prestige",
+    "price": 85000,
+    "image": "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=300&fit=crop",
+    "category": "Sacs"
+  },
+  {
+    "id": 11,
+    "name": "Sac Bandoulière Chic",
+    "price": 68000,
+    "image": "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&h=300&fit=crop",
+    "category": "Sacs"
+  },
+  {
+    "id": 12,
+    "name": "Pochette Soirée Dorée",
+    "price": 42000,
+    "image": "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=400&h=300&fit=crop",
+    "category": "Sacs"
+  },
+  {
+    "id": 13,
+    "name": "Collier Perles Fines",
+    "price": 38000,
+    "image": "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=300&fit=crop",
+    "category": "Accessoires"
+  },
+  {
+    "id": 14,
+    "name": "Boucles d'Oreilles Diamant",
+    "price": 52000,
+    "image": "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&h=300&fit=crop",
+    "category": "Accessoires"
+  },
+  {
+    "id": 15,
+    "name": "Bracelet Or 18 Carats",
+    "price": 95000,
+    "image": "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&h=300&fit=crop",
+    "category": "Accessoires"
+  },
+  {
+    "id": 16,
+    "name": "Foulard Soie Premium",
+    "price": 28000,
+    "image": "https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=400&h=300&fit=crop",
+    "category": "Accessoires"
+  },
+  {
+    "id": 17,
+    "name": "Lunettes de Soleil Luxe",
+    "price": 48000,
+    "image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&h=300&fit=crop",
+    "category": "Accessoires"
+  },
+  {
+    "id": 18,
+    "name": "Ceinture Cuir Designer",
+    "price": 35000,
+    "image": "https://images.unsplash.com/photo-1624222247344-550fb60583bb?w=400&h=300&fit=crop",
+    "category": "Accessoires"
+  }
+]

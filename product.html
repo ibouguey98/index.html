@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Biinaa-Glam — Produit</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo-section">
+        <div class="brand-name">Biinaa-Glam</div>
+      </div>
+      <nav class="header-nav">
+        <a href="index.html" class="nav-link">Accueil</a>
+        <a href="about.html" class="nav-link">À propos</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="checkout.html" class="nav-link">Caisse</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="product-detail" class="product-detail"></section>
+  </main>
+
+  <script>
+    function qs(name){
+      return new URLSearchParams(location.search).get(name);
+    }
+
+    async function renderProduct(){
+      const id = parseInt(qs('id'));
+      if(!id){ document.getElementById('product-detail').innerHTML = '<p>Produit non spécifié.</p>'; return; }
+      const res = await fetch('products.json');
+      const products = await res.json();
+      const p = products.find(x=>x.id===id);
+      if(!p){ document.getElementById('product-detail').innerHTML = '<p>Produit introuvable.</p>'; return; }
+
+      document.getElementById('product-detail').innerHTML = `
+        <div class="product-detail-card">
+          <img src="${p.image}" alt="${p.name}">
+          <div class="product-detail-info">
+            <h1>${p.name}</h1>
+            <p class="price">${p.price.toFixed(2)} €</p>
+            <p class="description small">Description du produit. Ajoutez un texte personnalisé ici.</p>
+            <div class="actions">
+              <button id="add-btn" class="btn primary">Ajouter au panier</button>
+              <a href="checkout.html" class="btn">Voir la caisse</a>
+            </div>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('add-btn').addEventListener('click', ()=>{
+        const cart = JSON.parse(localStorage.getItem('bg_cart')||'[]');
+        const existing = cart.find(i=>i.id===p.id);
+        if(existing) existing.quantity++;
+        else cart.push({...p, quantity:1});
+        localStorage.setItem('bg_cart', JSON.stringify(cart));
+        alert('Produit ajouté au panier.');
+      });
+    }
+
+    renderProduct();
+  </script>
+</body>
+</html>

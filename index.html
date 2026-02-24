@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Biinaa-Glam — Boutique de Luxe en Ligne</title>
+  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Biinaa-Glam — Votre destination luxe pour cosmétiques et accessoires de beauté premium">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo-section">
+        <img src="Recréer et vectorise.png" alt="Biinaa-Glam Logo" class="logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <div class="brand" style="display:none;">
+          <span class="brand-name">Biinaa-Glam</span>
+          <span class="brand-tagline">Luxe & Élégance</span>
+        </div>
+      </div>
+      
+      <nav class="header-nav">
+        <a href="tel:+221778069948" class="contact-link">
+          <i class="fas fa-phone"></i>
+          <span>+221 77 806 99 48</span>
+        </a>
+        <button id="cart-btn" class="btn cart-btn">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="cart-text">Panier</span>
+          <span class="cart-badge" id="cart-count">0</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Biinaa-Glam</h1>
+      <p class="hero-subtitle">L'Excellence de la Beauté</p>
+      <p class="hero-description">Découvrez notre collection exclusive de cosmétiques et accessoires de luxe</p>
+      <a href="#products" class="btn-hero">
+        Découvrir la Collection
+        <i class="fas fa-arrow-down"></i>
+      </a>
+    </div>
+    <div class="hero-overlay"></div>
+  </section>
+
+  <!-- Products Section -->
+  <main>
+    <section class="products-section" id="products">
+      <div class="section-header">
+        <h2 class="section-title">Notre Collection</h2>
+        <p class="section-subtitle">Des produits d'exception pour sublimer votre beauté</p>
+      </div>
+      
+      <!-- Category Filter -->
+      <div class="category-filter">
+        <button class="filter-btn active" data-category="all">
+          <i class="fas fa-th"></i>
+          Tous les Produits
+        </button>
+        <button class="filter-btn" data-category="Chaussures">
+          <i class="fas fa-shoe-prints"></i>
+          Chaussures
+        </button>
+        <button class="filter-btn" data-category="Sacs">
+          <i class="fas fa-shopping-bag"></i>
+          Sacs
+        </button>
+        <button class="filter-btn" data-category="Accessoires">
+          <i class="fas fa-gem"></i>
+          Accessoires
+        </button>
+      </div>
+      
+      <div class="products-grid"></div>
+    </section>
+  </main>
+
+  <!-- Cart Sidebar -->
+  <aside id="cart" class="cart hidden">
+    <div class="cart-header">
+      <h2>
+        <i class="fas fa-shopping-bag"></i>
+        Votre Panier
+      </h2>
+      <button id="close-cart" class="btn-close">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    
+    <div id="cart-items" class="cart-items"></div>
+    
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <span id="cart-total" class="total-amount">0 FCFA</span>
+      </div>
+      <button id="checkout-btn" class="btn-checkout">
+        <i class="fab fa-whatsapp"></i>
+        Commander via WhatsApp
+      </button>
+    </div>
+  </aside>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Biinaa-Glam</h3>
+        <p>Votre destination luxe pour la beauté et l'élégance</p>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <p>
+          <i class="fas fa-phone"></i>
+          <a href="tel:+221778069948">+221 77 806 99 48</a>
+        </p>
+        <p>
+          <i class="fab fa-whatsapp"></i>
+          <a href="https://wa.me/221778069948" target="_blank">WhatsApp</a>
+        </p>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Suivez-nous</h4>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="TikTok">
+            <i class="fab fa-tiktok"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2026 Biinaa-Glam. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

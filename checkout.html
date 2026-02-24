@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Commande — Biinaa-Glam</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo-section">
+        <div class="brand-name">Biinaa-Glam</div>
+      </div>
+      <nav class="header-nav">
+        <a href="index.html" class="nav-link">Accueil</a>
+        <a href="about.html" class="nav-link">À propos</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="checkout.html" class="nav-link">Caisse</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section">
+      <h1>Votre commande</h1>
+      <div id="checkout-items"></div>
+      <div id="checkout-total" class="total-amount"></div>
+      <div style="margin-top:1rem;">
+        <button id="whatsapp-order" class="btn primary">Commander via WhatsApp</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function loadCart(){
+      return JSON.parse(localStorage.getItem('bg_cart')||'[]');
+    }
+
+    function renderCheckout(){
+      const cart = loadCart();
+      const container = document.getElementById('checkout-items');
+      if(cart.length===0){ container.innerHTML = '<p>Votre panier est vide.</p>'; document.getElementById('checkout-total').textContent=''; return; }
+      container.innerHTML = cart.map(i=>`<div class="checkout-row"><strong>${i.name}</strong> — ${i.quantity} × ${i.price.toFixed(2)} €</div>`).join('');
+      const total = cart.reduce((s,i)=>s+i.quantity*i.price,0);
+      document.getElementById('checkout-total').textContent = `Total: ${total.toFixed(2)} €`;
+    }
+
+    document.getElementById('whatsapp-order').addEventListener('click', ()=>{
+      const cart = loadCart();
+      if(cart.length===0){ alert('Votre panier est vide.'); return; }
+      const total = cart.reduce((s,i)=>s+i.quantity*i.price,0);
+      let message = '🛍️ Nouvelle commande Biinaa-Glam%0A%0A';
+      cart.forEach(i=>{ message += `• ${i.name} x${i.quantity} - ${(i.quantity*i.price).toFixed(2)} €%0A`; });
+      message += `%0ATotal: ${total.toFixed(2)} €%0A%0AMerci!`;
+      window.open('https://wa.me/221778069948?text='+message,'_blank');
+    });
+
+    renderCheckout();
+  </script>
+</body>
+</html>
